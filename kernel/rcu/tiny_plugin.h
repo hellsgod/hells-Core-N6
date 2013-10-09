@@ -302,7 +302,11 @@ static void show_tiny_preempt_stats(struct seq_file *m)
 
 #ifdef CONFIG_RCU_BOOST
 
+<<<<<<< HEAD:kernel/rcutiny_plugin.h
 #include "rtmutex_common.h"
+=======
+#include "../locking/rtmutex_common.h"
+>>>>>>> bf5bee4... rcu: Move RCU-related source code to kernel/rcu directory:kernel/rcu/tiny_plugin.h
 
 #define RCU_BOOST_PRIO CONFIG_RCU_BOOST_PRIO
 
