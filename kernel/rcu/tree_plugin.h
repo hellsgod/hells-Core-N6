@@ -1106,11 +1106,7 @@ static void __init __rcu_init_preempt(void)
 
 #ifdef CONFIG_RCU_BOOST
 
-<<<<<<< HEAD:kernel/rcutree_plugin.h
-#include "rtmutex_common.h"
-=======
-#include "../rtmutex_common.h"
->>>>>>> bf5bee4... rcu: Move RCU-related source code to kernel/rcu directory:kernel/rcu/tree_plugin.h
+#include "locking/rtmutex_common.h"
 
 #ifdef CONFIG_RCU_TRACE
 
