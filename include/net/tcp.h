@@ -292,6 +292,7 @@ extern int sysctl_tcp_limit_output_bytes;
 extern int sysctl_tcp_challenge_ack_limit;
 extern int sysctl_tcp_min_tso_segs;
 extern int sysctl_tcp_default_init_rwnd;
+extern int sysctl_tcp_autocorking;
 
 extern atomic_long_t tcp_memory_allocated;
 
