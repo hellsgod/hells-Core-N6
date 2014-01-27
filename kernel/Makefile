@@ -24,7 +24,6 @@ endif
 
 obj-y += sched/
 obj-y += power/
-obj-y += cpu/
 obj-y += irq/
 obj-y += rcu/
 
