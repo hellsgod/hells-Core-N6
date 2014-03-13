@@ -757,6 +757,8 @@ static int f2fs_remount(struct super_block *sb, int *flags, char *data)
 
 	sync_filesystem(sb);
 
+	sync_filesystem(sb);
+
 	/*
 	 * Save the old mount options in case we
 	 * need to restore them.
