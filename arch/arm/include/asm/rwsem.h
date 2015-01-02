@@ -26,7 +26,6 @@
 
 #ifdef __KERNEL__
 #include <asm/atomic.h>
-#include <asm/system.h>
 
 #define RWSEM_UNLOCKED_VALUE		0x00000000
 #define RWSEM_ACTIVE_BIAS		0x00000001
