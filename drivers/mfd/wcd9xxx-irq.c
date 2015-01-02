@@ -574,7 +574,7 @@ int __init wcd9xxx_irq_of_init(struct device_node *node,
 	 * Use irq_domain_simple_ops that has irq_domain_simple_map and
 	 * irq_domain_xlate_onetwocell.
 	 */
-	data->domain = irq_domain_add_linear(node, WCD9XXX_MAX_NUM_IRQS,
+	data->domain = irq_domain_add_tree(node,
 					     &irq_domain_simple_ops, data);
 	if (!data->domain) {
 		kfree(data);
@@ -609,7 +609,7 @@ static int phyirq_to_virq(struct wcd9xxx_core_resource *wcd9xxx_res, int offset)
 			__func__);
 		return -EINVAL;
 	}
-	return irq_linear_revmap(data->domain, offset);
+	return irq_find_mapping(data->domain, offset);
 }
 
 static int virq_to_phyirq(struct wcd9xxx_core_resource *wcd9xxx_res, int virq)
