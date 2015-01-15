@@ -1155,21 +1155,31 @@ static struct file_operations fops = {
 };
 
 static ssize_t pwmvalue_show(struct device *dev,
-                struct device_attribute *attr, char *buf)
+			     struct device_attribute *attr, char *buf)
 {
-        size_t count = 0;
-        count += sprintf(buf, "%d\n", vibe_strength);
-        return count;
+	size_t count = 0;
+
+	count += sprintf(buf, "%d\n", vibe_strength);
+
+	return count;
 }
 
 static ssize_t pwmvalue_store(struct device *dev,
-                struct device_attribute *attr, const char *buf, size_t count)
+			      struct device_attribute *attr, const char *buf,
+			      size_t count)
 {
 	int vs = 0;
-        sscanf(buf, "%d ",&vs);
-        if (vs < 0 || vs > 127) vs = 100;
+
+	sscanf(buf, "%d ",&vs);
+	if (vs < 0)
+		vs = 0;
+	if (vs > 127)
+		vs = 127;
+
+	/* proper scaling is done in userspace */
 	vibe_strength = vs;
-        return count;
+
+	return count;
 }
 
 static DEVICE_ATTR(pwmvalue, (S_IWUSR|S_IRUGO), pwmvalue_show, pwmvalue_store);
