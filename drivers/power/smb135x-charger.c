@@ -29,6 +29,10 @@
 #include <linux/regulator/machine.h>
 #include <linux/reboot.h>
 #include <linux/qpnp/qpnp-adc.h>
+#include <linux/moduleparam.h>
+
+static bool use_wlock = true;
+module_param(use_wlock, bool, 0644);
 
 #ifdef CONFIG_FORCE_FAST_CHARGE
 #include <linux/fastcharge.h>
@@ -448,7 +452,7 @@ static int smb135x_setup_vbat_monitoring(struct smb135x_chg *chip);
 
 static void smb_stay_awake(struct smb_wakeup_source *source)
 {
-	if (__test_and_clear_bit(0, &source->disabled)) {
+	if (use_wlock && __test_and_clear_bit(0, &source->disabled)) {
 		__pm_stay_awake(&source->source);
 		pr_debug("enabled source %s\n", source->source.name);
 	}
