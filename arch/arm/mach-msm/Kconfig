@@ -837,6 +837,13 @@ config MSM_MEMORY_LOW_POWER_MODE
 	  The application processor controls whether memory should enter
 	  which low power mode.
 
+config FORCE_FAST_CHARGE
+	bool "Force faster charge rate for AC/USB"
+	default y
+	help
+	  This allows users to override default charge rate for both USB and AC
+	  charger input current
+
 choice
 	prompt "Default Memory Low Power Mode during Idle"
 	depends on MSM_MEMORY_LOW_POWER_MODE
