@@ -3332,7 +3332,7 @@ static int smb135x_setup_vbat_monitoring(struct smb135x_chg *chip)
 
 	if (chip->poll_fast) { /* the adc polling rate is higher*/
 		chip->vbat_monitor_params.timer_interval =
-			ADC_MEAS1_INTERVAL_31P3MS;
+			ADC_MEAS1_INTERVAL_250MS;
 	} else /* adc polling rate is default*/ {
 		chip->vbat_monitor_params.timer_interval =
 			ADC_MEAS1_INTERVAL_1S;
