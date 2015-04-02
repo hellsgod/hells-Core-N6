@@ -667,7 +667,7 @@ static int msm_isp_send_hw_cmd(struct vfe_device *vfe_dev,
 			|| update_id == *cfg_data) {
 			pr_err("hw update lock failed,acquire id %u\n",
 				*cfg_data);
-			pr_err("hw update lock failed,current id %lu\n",
+			pr_err("hw update lock failed,current id %u\n",
 				vfe_dev->axi_data.src_info[VFE_PIX_0].frame_id);
 			pr_err("hw update lock failed,last id %u\n",
 				update_id);
@@ -680,7 +680,7 @@ static int msm_isp_send_hw_cmd(struct vfe_device *vfe_dev,
 			!= *cfg_data) {
 			pr_err("hw update across frame boundary,begin id %u\n",
 				*cfg_data);
-			pr_err("hw update across frame boundary,end id %lu\n",
+			pr_err("hw update across frame boundary,end id %u\n",
 				vfe_dev->axi_data.src_info[VFE_PIX_0].frame_id);
 		}
 		vfe_dev->axi_data.src_info[VFE_PIX_0].last_updt_frm_id =
