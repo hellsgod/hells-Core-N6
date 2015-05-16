@@ -160,8 +160,9 @@ void set_power_suspend_state(int new_state)
 			queue_work(suspend_work_queue, &power_resume_work);
 		}
 		spin_unlock_irqrestore(&state_lock, irqflags);
+	}
 	#ifdef CONFIG_POWERSUSPEND_DEBUG
-	} else {
+	else {
 		pr_info("[POWERSUSPEND] state change requested, but unchanged ?! Ignored !\n");
 	}
 	#endif
