@@ -3,7 +3,6 @@
  */
 #include <linux/sched.h>
 #include <linux/cpu.h>
-#include <linux/cpuidle.h>
 #include <linux/tick.h>
 #include <linux/mm.h>
 #include <linux/stackprotector.h>
@@ -12,7 +11,7 @@
 
 #include <trace/events/power.h>
 
-static int __read_mostly cpu_idle_force_poll;
+int __read_mostly cpu_idle_force_poll;
 
 void cpu_idle_poll_ctrl(bool enable)
 {
@@ -75,9 +74,6 @@ static void cpu_idle_loop(void)
 			check_pgt_cache();
 			rmb();
 
-			if (cpu_is_offline(smp_processor_id()))
-				arch_cpu_idle_dead();
-
 			local_irq_disable();
 			arch_cpu_idle_enter();
 
@@ -96,10 +92,8 @@ static void cpu_idle_loop(void)
 				if (!current_clr_polling_and_test()) {
 					stop_critical_timings();
 					rcu_idle_enter();
-					if (cpuidle_idle_call())
-						arch_cpu_idle();
-					if (WARN_ON_ONCE(irqs_disabled()))
-						local_irq_enable();
+					arch_cpu_idle();
+					WARN_ON_ONCE(irqs_disabled());
 					rcu_idle_exit();
 					start_critical_timings();
 				} else {
@@ -108,16 +102,12 @@ static void cpu_idle_loop(void)
 				__current_set_polling();
 			}
 			arch_cpu_idle_exit();
-			/*
-			 * We need to test and propagate the TIF_NEED_RESCHED
-			 * bit here because we might not have send the
-			 * reschedule IPI to idle tasks.
-			 */
-			if (tif_need_resched())
-				set_preempt_need_resched();
 		}
 		tick_nohz_idle_exit();
 		schedule_preempt_disabled();
+		if (cpu_is_offline(smp_processor_id()))
+			arch_cpu_idle_dead();
+
 	}
 }
 
