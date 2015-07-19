@@ -23,7 +23,7 @@
 #define DEF_SAMPLING_DOWN_FACTOR		(1)
 #define MAX_SAMPLING_DOWN_FACTOR		(10)
 #define MICRO_FREQUENCY_MIN_SAMPLE_RATE		(10000)
-#define BOOST_DURATION_US			(40000)
+#define BOOST_DURATION_US			(1000000)
 #define BOOST_FREQ_VAL				(1497600)
 #define DEFAULT_MIN_LOAD			(5)
 
@@ -58,8 +58,6 @@ static void cs_check_cpu(int cpu, unsigned int load)
 	struct cs_dbs_tuners *cs_tuners = dbs_data->tuners;
 	bool boosted;
 	u64 now;
-
-	cpufreq_notify_utilization(policy, load);
 
 	/*
 	 * break out if we 'cannot' reduce the speed as the user might
