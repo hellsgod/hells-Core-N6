@@ -110,10 +110,10 @@ static int nabove_hispeed_delay = ARRAY_SIZE(default_above_hispeed_delay);
 /* Non-zero means indefinite speed boost active */
 static int boost_val;
 /* Duration of a boot pulse in usecs */
-static int boostpulse_duration_val = DEFAULT_MIN_SAMPLE_TIME;
+static int boostpulse_duration_val = 1000000;
 /* End time of boost pulse in ktime converted to usecs */
 static u64 boostpulse_endtime;
-#define DEFAULT_INPUT_BOOST_FREQ 1728000
+#define DEFAULT_INPUT_BOOST_FREQ 1497600
 unsigned int input_boost_freq = DEFAULT_INPUT_BOOST_FREQ;
 
 /*
@@ -389,8 +389,6 @@ static void cpufreq_interactive_timer(unsigned long data)
 	cpu_load = loadadjfreq / pcpu->policy->cur;
 	boosted = boost_val || now < (get_input_time() + boostpulse_duration_val);
 	this_hispeed_freq = max(hispeed_freq, pcpu->policy->min);
-
-	cpufreq_notify_utilization(pcpu->policy, cpu_load);
 
 	if (cpu_load >= go_hispeed_load || boosted) {
 		if (pcpu->policy->cur < this_hispeed_freq) {
