@@ -772,7 +772,7 @@ void a3xx_a4xx_err_callback(struct adreno_device *adreno_dev, int bit)
 				"ringbuffer reserved bit error interrupt\n");
 		break;
 	case A3XX_INT_CP_HW_FAULT: {
-		struct adreno_gpudev *gpudev = adreno_dev->gpudev;
+		struct adreno_gpudev *gpudev = ADRENO_GPU_DEVICE(adreno_dev);
 
 		adreno_readreg(adreno_dev, ADRENO_REG_CP_HW_FAULT, &reg);
 		KGSL_DRV_CRIT_RATELIMIT(device,
