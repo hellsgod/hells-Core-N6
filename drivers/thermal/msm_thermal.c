@@ -26,7 +26,7 @@
 #include <linux/of.h>
 #include <linux/hrtimer.h>
 
-unsigned int temp_threshold = 65;
+unsigned int temp_threshold = 70;
 module_param(temp_threshold, int, 0644);
 
 static struct thermal_info {
