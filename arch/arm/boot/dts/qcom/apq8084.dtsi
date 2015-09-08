@@ -4870,7 +4870,7 @@
 
 	qcom,bcl {
 		compatible = "qcom,bcl";
-		qcom,bcl-enable;
+		qcom,bcl-disable;
 		qcom,ibat-vadc = <&pma8084_vadc>;
 		qcom,ibat-threshold-adc_tm = <&pma8084_adc_tm>;
 		qcom,bcl-hotplug-list = <&CPU2 &CPU3>;
