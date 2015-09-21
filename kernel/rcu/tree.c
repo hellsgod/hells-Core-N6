@@ -3005,6 +3005,7 @@ EXPORT_SYMBOL_GPL(rcu_barrier_sched);
 static void __init
 rcu_boot_init_percpu_data(int cpu, struct rcu_state *rsp)
 {
+	static struct lock_class_key rcu_exp_sched_rdp_class;
 	unsigned long flags;
 	struct rcu_data *rdp = per_cpu_ptr(rsp->rda, cpu);
 	struct rcu_node *rnp = rcu_get_root(rsp);
@@ -3022,6 +3023,10 @@ rcu_boot_init_percpu_data(int cpu, struct rcu_state *rsp)
 	rdp->rsp = rsp;
 	rcu_boot_init_nocb_percpu_data(rdp);
 	raw_spin_unlock_irqrestore(&rnp->lock, flags);
+	if (rsp == &rcu_sched_state)
+		lockdep_set_class_and_name(&rdp->exp_funnel_mutex,
+					   &rcu_exp_sched_rdp_class,
+					   "rcu_data_exp_sched");
 }
 
 /*
