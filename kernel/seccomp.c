@@ -414,23 +414,7 @@ static struct seccomp_filter *seccomp_prepare_filter(struct sock_fprog *fprog)
 	/* Check and rewrite the fprog for seccomp use */
 	ret = seccomp_check_filter(filter->insns, filter->len);
 	if (ret)
-		goto free_prog;
-
-	/* Allocate a new seccomp_filter */
-	ret = -ENOMEM;
-	filter = kzalloc(sizeof(struct seccomp_filter) +
-			 sizeof(struct sock_filter_int) * new_len,
-			 GFP_KERNEL|__GFP_NOWARN);
-	if (!filter)
-		goto free_prog;
-
-	ret = sk_convert_filter(fp, fprog->len, filter->insnsi, &new_len);
-	if (ret)
-		goto free_filter;
-	kfree(fp);
-
-	atomic_set(&filter->usage, 1);
-	filter->len = new_len;
+		goto fail;
 
 	return filter;
 
