@@ -25,6 +25,7 @@
 #include <linux/platform_device.h>
 #include <linux/workqueue.h>
 #include <linux/power_supply.h>
+#include <linux/cpuset.h>
 
 #define ZEN_DECISION "zen_decision"
 
