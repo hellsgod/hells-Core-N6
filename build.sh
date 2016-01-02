@@ -15,7 +15,7 @@ DEFCONFIG="hells_defconfig"
 
 # Kernel Details
 BASE_HC_VER="hC"
-VER="-b13-t1-M-permissive"
+VER="-b13-M-permissive"
 HC_VER="$BASE_HC_VER$VER"
 
 # Vars
