@@ -14,9 +14,11 @@
  * It uses intrinsics to do the equivalent things.
  */
 #undef barrier
+#undef barrier_data
 #undef RELOC_HIDE
 
 #define barrier() __memory_barrier()
+#define barrier_data(ptr) barrier()
 
 #define RELOC_HIDE(ptr, off)					\
   ({ unsigned long __ptr;					\
