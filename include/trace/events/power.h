@@ -6,6 +6,7 @@
 
 #include <linux/ktime.h>
 #include <linux/tracepoint.h>
+#include <linux/device.h>
 
 DECLARE_EVENT_CLASS(cpu,
 
