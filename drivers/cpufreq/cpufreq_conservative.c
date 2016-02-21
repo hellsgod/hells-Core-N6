@@ -16,15 +16,15 @@
 #include <linux/touchboost.h>
 
 /* Conservative governor macros */
-#define DEF_FREQUENCY_UP_THRESHOLD		(95)
-#define DEF_FREQUENCY_DOWN_THRESHOLD		(30)
-#define DEF_FREQUENCY_TWOSTEP_THRESHOLD		(60)
+#define DEF_FREQUENCY_UP_THRESHOLD		(90)
+#define DEF_FREQUENCY_DOWN_THRESHOLD		(40)
+#define DEF_FREQUENCY_TWOSTEP_THRESHOLD		(65)
 #define DEF_FREQUENCY_STEP			(5)
 #define DEF_SAMPLING_DOWN_FACTOR		(1)
 #define MAX_SAMPLING_DOWN_FACTOR		(10)
 #define MICRO_FREQUENCY_MIN_SAMPLE_RATE		(20000)
 #define BOOST_DURATION_US			(1000000)
-#define BOOST_FREQ_VAL				(1497600)
+#define BOOST_FREQ_VAL				(960000)
 #define DEFAULT_MIN_LOAD			(5)
 
 static DEFINE_PER_CPU(struct cs_cpu_dbs_info_s, cs_cpu_dbs_info);
