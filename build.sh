@@ -15,7 +15,7 @@ DEFCONFIG="hells_defconfig"
 
 # Kernel Details
 BASE_HC_VER="hC"
-VER="-b18-M"
+VER="-b1-711"
 HC_VER="$BASE_HC_VER$VER"
 
 # Vars
@@ -25,7 +25,7 @@ export SUBARCH=arm
 
 # Paths
 KERNEL_DIR=`pwd`
-REPACK_DIR="${HOME}/Android/Kernel/hC-N6-anykernel-M"
+REPACK_DIR="${HOME}/Android/Kernel/hC-N6-anykernel"
 ZIP_MOVE="${HOME}/Android/Kernel/hC-releases/N6"
 ZIMAGE_DIR="${HOME}/Android/Kernel/hells-Core-N6/arch/arm/boot"
 DB_FOLDER="${HOME}/Dropbox/Kernel-Betas/N6"
@@ -41,7 +41,7 @@ function make_kernel {
 		make $DEFCONFIG
 		make $THREAD
 		cp -vr $ZIMAGE_DIR/$KERNEL $REPACK_DIR/kernel
-		mv ${HOME}/Android/Kernel/hC-N6-anykernel-M/kernel/zImage-dtb ${HOME}/Android/Kernel/hC-N6-anykernel-M/kernel/zImage
+		mv ${HOME}/Android/Kernel/hC-N6-anykernel/kernel/zImage-dtb ${HOME}/Android/Kernel/hC-N6-anykernel/kernel/zImage
 }
 
 function make_zip {
