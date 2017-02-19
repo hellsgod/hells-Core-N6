@@ -9,7 +9,7 @@ restore='\033[0m'
 clear
 
 # Resources
-THREAD="-j9"
+THREAD="-j$(grep -c ^processor /proc/cpuinfo)"
 KERNEL="zImage-dtb"
 DEFCONFIG="hells_defconfig"
 
